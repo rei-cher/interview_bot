@@ -2,7 +2,8 @@ import streamlit as st
 import requests
 from google.cloud import aiplatform
 import keys
-
+#some random changes
+#some random changes
 # Set up Google Cloud credentials (replace 'your_credentials.json' with your actual credentials file)
 # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "your_credentials.json"
 
