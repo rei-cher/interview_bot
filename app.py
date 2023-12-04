@@ -14,7 +14,6 @@ from langchain.prompts.chat import (
 )
 from Homepage import user_major
 from dotenv import load_dotenv
-from Homepage import user_major
 
 st.title("Interview Prep AI")
 
@@ -30,7 +29,7 @@ os.environ['OPENAI_API_KEY'] = key
 
 key = load_dotenv()
 
-chat = ChatOpenAI(temperature=0.6)
+chat = ChatOpenAI(model="gpt-4",temperature=0.6)
 
 system_template = """You are an interviewer, asking interview questions for an entry level data analyst job. 
                 You are to serve the role of a {role} and ask questions to assess abilities for the job. Ask only one question
@@ -68,7 +67,7 @@ if inp := st.chat_input("Type here"):
 
     st.session_state['message'].append({'role': 'user', 'content': inp})
 
-response = chain.run(role=f'{user_major} Interviewer', text=inp)
+response = chain.run(role='Technical Interviewer', text=inp)
 
 with st.chat_message("assistant"):
     st.markdown(response)
