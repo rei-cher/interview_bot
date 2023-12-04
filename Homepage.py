@@ -1,4 +1,8 @@
 import streamlit as st
+import pdf_info
+import Langchain_model
+
+user_major=""
 
 st.set_page_config(page_icon='resumeicon.png', layout='wide', page_title='Interview Preparation : Getting Started')
 
@@ -25,7 +29,10 @@ st.markdown("""\n1. Please upload your resume in the sidebar on your left.
                \n\n5. Navigate to the Interview Round to get started with your practice interviews.\n\n""")
 
 
-st.sidebar.file_uploader("**Please upload your resume**", type='pdf')
+uploaded_pdf = st.sidebar.file_uploader("**Please upload your resume**", type='pdf')
 
 
 st.text_area(label="**Write your job description here**",height=300)
+if uploaded_pdf is not None:
+    user_major = Langchain_model.get_major(pdf_info.read_pdf(uploaded_pdf))
+    st.write(user_major)
