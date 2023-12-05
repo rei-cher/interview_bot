@@ -24,4 +24,4 @@ def get_major(text):
     chain = load_qa_chain(llm, chain_type="stuff")
     role = chain.run(input_documents = docs_major, question = "What is a major in the file")
     skills = chain.run(input_documents = docs_skills, question = "What are the skills in the file")
-    return role
+    return role,skills
