@@ -1,19 +1,22 @@
 import streamlit as st
-
-st.set_page_config(page_icon='resumeicon.png', layout='wide', page_title='Interview Preparation : Getting Started')
+from secret_key import openapi_key
+st.set_page_config(page_icon='rex.png', layout='wide', page_title='Interview Preparation : Getting Started')
 
 st.sidebar.markdown("Navigate using the options above")
-key = st.sidebar.text_input("OpenAI API Key ", type="password")
+#key = st.sidebar.text_input("OpenAI API Key ", type="password")
 
 if "openai_key" not in st.session_state:
-    st.session_state.openai_key = key
+    st.session_state.openai_key = openapi_key
 
-if not key and not st.session_state.openai_key:
-    st.sidebar.info("Please add your API key to continue")
-    st.stop()
+#if not key and not st.session_state.openai_key:
+   # st.sidebar.info("Please add your API key to continue")
+    #st.stop()
+
+#if key:
+    #st.session_state.openai_key = key
 
 
-st.title("""AI Interview Preparation Tool : Getting Started""")
+st.title("Interview AI Tool : Getting Started")
 st.title("Recommended Steps : ")
 
 st.markdown("""\n1. Please upload your resume in the sidebar on your left.
@@ -28,4 +31,4 @@ st.markdown("""\n1. Please upload your resume in the sidebar on your left.
 st.sidebar.file_uploader("**Please upload your resume**", type='pdf')
 
 
-st.text_area(label="**Write your job description here**",height=300)
+st.text_area(label="**Write your job description here**", height=300)
