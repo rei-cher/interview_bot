@@ -27,15 +27,15 @@ os.environ['OPENAI_API_KEY'] = openapi_key
 llm = OpenAI()
 
 st.title("Interview AI Tool : Getting Started")
-st.title("Recommended Steps : ")
+st.header("Recommended Steps : ")
 
-st.markdown("""\n1. Please upload your resume in the sidebar on your left.
-               \n\n2. If you are applying for a specific job , please add job description in the text box below.
-               \n\n3. For started we recommend navigating to the Introduction Round , here your AI assistant will debrief you
+st.markdown("""\n1. Please upload your **resume** in the sidebar on your **left**.
+               \n\n2. If you are applying for a specific job , please add **job description** in the text box **below**.
+               \n\n3. For starters we recommend navigating to the **Introduction Round** , here your AI assistant will debrief you
                 on the interview and answer your queries related to the interview.
-               \n\n4. Next, we recommend having a go with a low stakes Warmup Round to get you in the right flow for the 
+               \n\n4. Next, we recommend having a go with a low stakes **Warmup Round** to get you in the right flow for the 
                actual interview round.
-               \n\n5. Navigate to the Interview Round to get started with your practice interviews.\n\n""")
+               \n\n5. Navigate to the **Interview Round** to get started with your practice interviews.\n\n""")
 
 st.sidebar.header("Resume")
 resume = st.sidebar.file_uploader(label="**Upload your Resume/CV PDF file**", type='pdf')
@@ -75,5 +75,7 @@ if resume:
     st.session_state["Resume Info"] = resume_info
 
 st.header("Job Details")
+
 st.session_state["Job Description"] = st.text_area(label="**Write your job description here**", height=300)
+
 

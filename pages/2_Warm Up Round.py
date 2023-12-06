@@ -38,6 +38,10 @@ if not st.session_state["Resume Info"]:
     st.info("Please upload your Resume")
     st.stop()
 
+if not st.session_state["Job Description"]:
+    st.info("Please add your job description")
+    st.stop()
+
 os.environ['OPENAI_API_KEY'] = st.session_state.openai_key
 
 chat = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.3)
@@ -140,7 +144,7 @@ if st.session_state.action == "Next" or "Repeat" and (
         extracts = extract_chain.run(history=st.session_state.questions, text="")
     else:
         extracts = "No previous Questions"
-    chosen_q = choose_chain.run(action=st.session_state.action, questions=extracts, data=data, text="",details=st.session_state["Resume Info"])
+    chosen_q = choose_chain.run(action=st.session_state.action, questions=extracts, data=data, text="",details=st.session_state["Resume Info"], description=st.session_state['Job Description'])
     response = question_chain.run(question=chosen_q, history=st.session_state.history, text=inp, details=st.session_state["Resume Info"])
 
     with st.chat_message("assistant", avatar='rex.png'):

@@ -23,7 +23,7 @@ if not st.session_state.openai_key:
     st.info("Please add your API key to continue")
     st.stop()
 
-if not st.session_state["Resume Info"]:
+if "Resume Info" not in st.session_state or not st.session_state["Resume Info"]:
     st.info("Please upload your Resume")
     st.stop()
 
@@ -66,7 +66,11 @@ if "intro_messages" not in st.session_state:
     st.session_state["intro_messages"] = []
 
 for intro_message in st.session_state["intro_messages"]:
-    with st.chat_message(intro_message['role']):
+    if intro_message['role'] == "assistant":
+        avatar = "rex.png"
+    else:
+        avatar = "user.png"
+    with st.chat_message(intro_message['role'],avatar=avatar):
         st.markdown(intro_message['content'])
 
 

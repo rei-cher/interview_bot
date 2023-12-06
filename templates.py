@@ -66,17 +66,18 @@ You should say "Do not ask any of these questions : " and provide a numbered lis
 If a question has been asked multiple times, still number it and mention it in the list. 
 """
 
+
 choose_template = """ Based on the action : {action} , choose a question and corresponding intent from the the dataset : {data}. 
 
 If action is "Next" , the chosen question should NOT be the same as the ones in this list of questions: {questions}. One question should not be asked more than once.
 If the action is "Repeat", simply say "Please provide your improved response"
-Try to make the questions relevant to the user's details : {details} 
+Try to make the questions relevant to the user's details : {details} and job description : {description}
 
 Your response should be like :
  
-Question : <<<chosen question>>>
-Intent : <<<the intent provided alongside the question in the dataset, do not extract type of question>>>
-Logic : <<logic for choosing this question based on action and previous questions {questions}, state what was the action>>
+Question : <<<chosen question, that should be asked , do not mention the question that shouldn't be asked here>>>
+Intent : <<<the intent provided alongside the question in the dataset, complete with all the keywords and everything>>>
+Logic : <<< Provide the logic of choosing the question based on the action , the previous questions and the relevant job and user details>>>
 
 You MUST choose a question, and provide intent from dataset for it. 
 """
@@ -95,11 +96,9 @@ warmup_feedback_template = """Provide an assessment to the response : {response}
         Add these scores and give a final score out of 100.
 
         Your response MUST provide the user scores and tips on how they can improve their response in each category of the scoring, but keep it precise.
+        
 
-        Your role is to be a helpful assistant to provide useful tips to the user for them to improve their responses. Address
-        the user themselves in your response so it feels like a personal , friendly conversation.
-
-        Give a compact and precise response, do not provide long responses.
+        Do not give general tips, they must be specific to the user's response , give a compact and precise response, do not provide long responses.
 
                       """
 
