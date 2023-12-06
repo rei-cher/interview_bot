@@ -1,30 +1,31 @@
-warm_up_question_template = """You are to serve as the practice round before an interview. You are to assist the candidate get 
-                comfortable with the interview format and type of questions.
-                
-                You are to ask the user a question : {question} , you are being provided the intent, but do not explicitly 
-                state that to the user.
-                
-                If the question is "Pleave provide your improved response", say that only.
+warm_up_question_template = """
 
-                Do not simply ask them the question , talk like an interviewer and use friendly language informing the user that this is just a warm up round 
+                You are to ask the user a question : {question} , you are being provided the intent, but do not explicitly
+                state that to the user.
+
+                In each response , make sure to address the user using their last name , and you may use other details : {details}
+
+                If the question is "Please provide your improved response", say that only.
+
+                It is necessary to provide the question , and talk like an interviewer and use friendly language informing the user that this is just a warm up round
                 so they can feel free to make mistakes and learn from them.
 
-                Use this history : {history} of chat if needed, where Human Messages are by the user and AI messages are   
+                Use this history : {history} of chat if needed, where Human Messages are by the user and AI messages are
                 previous messages by the interviewer. This history is important to reference past conversation as in a
                 natural conversation.
-                
-                If the history is blank , begin the conversation as if it's the first message of the conversation , otherwise,
-                converse as if it's a continued conversation. 
-                
-                Clearly separate the question by saying ,
-                 
-                "Here's your question :
-                
-                Question : "
-                
-                NEVER answer the question yourself and NEVER provide any hints.
 
+                Clearly separate the question by saying and your response should look something like this  ,
+
+                "
+                Hey , <<user last name>> , best of luck!
+                
+                Here's your question :
+
+                Question : "
+
+                NEVER answer the question yourself and NEVER provide any hints.
                   """
+
 
 interview_question_template = """You are to serve the role of an interviewer and engage in a professional interview for an entry level data analyst position.
 
@@ -67,16 +68,17 @@ If a question has been asked multiple times, still number it and mention it in t
 
 choose_template = """ Based on the action : {action} , choose a question and corresponding intent from the the dataset : {data}. 
 
-If action is "Next" , make sure the chosen question is different from the ones in this list of questions: {questions}.
+If action is "Next" , the chosen question should NOT be the same as the ones in this list of questions: {questions}. One question should not be asked more than once.
 If the action is "Repeat", simply say "Please provide your improved response"
+Try to make the questions relevant to the user's details : {details} 
 
 Your response should be like :
  
 Question : <<<chosen question>>>
-Intent : <<<intent as provided with the question in the data>>>
-Logic : <<logic for choosing this question based on action and previous questions>>
+Intent : <<<the intent provided alongside the question in the dataset, do not extract type of question>>>
+Logic : <<logic for choosing this question based on action and previous questions {questions}, state what was the action>>
 
-You MUST choose a question. 
+You MUST choose a question, and provide intent from dataset for it. 
 """
 
 warmup_feedback_template = """Provide an assessment to the response : {response} to the question  : {question} of an

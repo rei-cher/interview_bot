@@ -34,6 +34,10 @@ if not st.session_state.openai_key:
     st.info("Please add your API key to continue")
     st.stop()
 
+if not st.session_state["Resume Info"]:
+    st.info("Please upload your Resume")
+    st.stop()
+
 os.environ['OPENAI_API_KEY'] = st.session_state.openai_key
 
 chat = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.3)
@@ -81,6 +85,7 @@ question_chain = LLMChain(llm=chat, prompt=chat_prompt_q)
 ### Provide Feedback
 
 system_template_f = warmup_feedback_template
+
 
 system_message_prompt_f = SystemMessagePromptTemplate.from_template(system_template_f)
 
@@ -135,10 +140,11 @@ if st.session_state.action == "Next" or "Repeat" and (
         extracts = extract_chain.run(history=st.session_state.questions, text="")
     else:
         extracts = "No previous Questions"
-    chosen_q = choose_chain.run(action=st.session_state.action, questions=extracts, data=data, text="")
-    response = question_chain.run(question=chosen_q, history=st.session_state.history, text=inp)
+    chosen_q = choose_chain.run(action=st.session_state.action, questions=extracts, data=data, text="",details=st.session_state["Resume Info"])
+    response = question_chain.run(question=chosen_q, history=st.session_state.history, text=inp, details=st.session_state["Resume Info"])
 
     with st.chat_message("assistant", avatar='rex.png'):
+
         st.markdown(response)
 
         st.session_state.action = "Feedback"
