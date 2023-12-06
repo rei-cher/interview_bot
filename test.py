@@ -28,11 +28,11 @@ category = st.selectbox("Which type of questions do you want to practice?",
 while category is None:
     st.markdown('Please select question category')
 
-if not st.session_state.openai_key:
-    st.info("Please add your API key to continue")
-    st.stop()
+# if not st.session_state.openai_key:
+#     st.info("Please add your API key to continue")
+#     st.stop()
 
-os.environ['OPENAI_API_KEY'] = st.session_state.openai_key
+os.environ['OPENAI_API_KEY'] = str(os.getenv("OPENAI_API_KEY"))
 
 chat = ChatOpenAI(temperature=0.6)
 

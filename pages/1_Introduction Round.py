@@ -14,16 +14,19 @@ from langchain.prompts.chat import (
 )
 from langchain.memory import ConversationBufferMemory
 from langchain.memory import ConversationBufferWindowMemory
+from dotenv import load_dotenv
+
+load_dotenv()
 
 st.set_page_config(page_icon='rex.png', layout='wide')
 
 st.title("Introduction Round : Getting Familiar")
 
-if not st.session_state.openai_key:
-    st.info("Please add your API key to continue")
-    st.stop()
+# if not st.session_state.openai_key:
+#     st.info("Please add your API key to continue")
+#     st.stop()
 
-os.environ['OPENAI_API_KEY'] = st.session_state.openai_key
+os.environ['OPENAI_API_KEY'] = str(os.getenv("OPENAI_API_KEY"))
 
 chat = ChatOpenAI(temperature=0.3)
 

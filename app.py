@@ -15,6 +15,9 @@ from langchain.prompts.chat import (
 from langchain.memory import ConversationBufferMemory
 from langchain.memory import ConversationBufferWindowMemory
 import json
+from dotenv import load_dotenv
+
+load_dotenv()
 
 with open('dataset.json', 'r') as file:
     data = json.load(file)
@@ -27,11 +30,11 @@ category = st.selectbox("Which type of questions do you want to attempt",
 while category is None:
     st.markdown('Please select question category')
 
-if not st.session_state.openai_key:
-    st.info("Please add your API key to continue")
-    st.stop()
+# if not st.session_state.openai_key:
+#     st.info("Please add your API key to continue")
+#     st.stop()
 
-os.environ['OPENAI_API_KEY'] = st.session_state.openai_key
+os.environ['OPENAI_API_KEY'] = str(os.getenv("OPENAI_API_KEY"))
 
 chat = ChatOpenAI(temperature=0.4)
 
