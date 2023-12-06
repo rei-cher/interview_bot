@@ -138,8 +138,8 @@ if st.session_state.action == "Next" or "Repeat" and (
         extracts = extract_chain.run(history=st.session_state.questions, text="")
     else:
         extracts = "No previous Questions"
-    chosen_q = choose_chain.run(action=st.session_state.action, questions=extracts, data=data, text="")
-    response = question_chain.run(question=chosen_q, history=st.session_state.history, text=inp)
+    chosen_q = choose_chain.run(action=st.session_state.action, questions=extracts, data=data, text="",details=st.session_state["Resume Info"], description=st.session_state['Job Description'])
+    response = question_chain.run(question=chosen_q, history=st.session_state.history, text=inp,details=st.session_state["Resume Info"])
 
     with st.chat_message("assistant", avatar='rex.png'):
         st.markdown(response)
