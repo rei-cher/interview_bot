@@ -14,13 +14,20 @@ from langchain.prompts.chat import (
 )
 from langchain.memory import ConversationBufferMemory
 from langchain.memory import ConversationBufferWindowMemory
-from dotenv import load_dotenv
-
-load_dotenv()
 
 st.set_page_config(page_icon='rex.png', layout='wide')
 
 st.title("Introduction Round : Getting Familiar")
+st.info("""
+In the Introduction Round, we aim to get to know you better and create a comfortable environment for a productive 
+interview experience. We'll begin by explaining the interview structure, providing you with a clear roadmap of what to
+expect. Following this, we'll kick things off with an icebreaker question to break the ice and ease you into the 
+conversation. Moving forward, we'll explore your professional background, educational journey, and delve into your 
+skills and strengths. You'll have the opportunity to share your career goals and aspirations, allowing us to understand
+the unique qualities you bring to the table. If there are any specific achievements or points you'd like to highlight, 
+this is the moment to shine. As we approach the conclusion of the round, we'll wrap up with a closing discussion and 
+seamlessly transition to the next stage. This round is designed to be informative, engaging, and to help you showcase 
+your best self. Let's embark on this journey together!""")
 
 if not st.session_state.openai_key:
     st.info("Please add your API key to continue")
@@ -31,15 +38,8 @@ if not st.session_state.openai_key:
 # if "Resume Info" not in st.session_state or not st.session_state["Resume Info"]:
 #     st.info("Please upload your Resume")
 #     st.stop()
-<<<<<<< HEAD
-os.environ['OPENAI_API_KEY'] = str(os.getenv("OPENAI_API_KEY"))
-=======
-if "Resume Info" not in st.session_state or not st.session_state["Resume Info"]:
-    st.info("Please upload your Resume")
-    st.stop()
 
 os.environ['OPENAI_API_KEY'] = st.session_state.openai_key
->>>>>>> 0d1d6c700b3d094e4ed64e4fc696b1bc40a5a616
 
 chat = ChatOpenAI(temperature=0.3)
 

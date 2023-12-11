@@ -16,9 +16,6 @@ from langchain.memory import ConversationBufferMemory
 from langchain.memory import ConversationBufferWindowMemory
 import json
 from templates import choose_template, extract_template, interview_feedback_template, interview_question_template
-from dotenv import load_dotenv
-
-load_dotenv()
 
 st.set_page_config(page_icon='rex.png', layout='wide')
 
@@ -33,13 +30,13 @@ category = st.selectbox("Which type of questions do you want to practice?",
 while category is None:
     st.markdown('Please select question category')
 
-# if not st.session_state.openai_key:
-#     st.info("Please add your API key to continue")
-#     st.stop()
+if not st.session_state.openai_key:
+    st.info("Please add your API key to continue")
+    st.stop()
 
-os.environ['OPENAI_API_KEY'] = str(os.getenv("OPENAI_API_KEY"))
+os.environ['OPENAI_API_KEY'] = st.session_state.openai_key
 
-chat = ChatOpenAI(model_name='gpt-4', temperature=0.3)
+chat = ChatOpenAI(model_name='gpt-3.5-turbo', temperature=0.3)
 
 memory = ConversationBufferMemory()
 

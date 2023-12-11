@@ -1,8 +1,4 @@
 import streamlit as st
-<<<<<<< HEAD
-import data_extraction
-import pdf_reader
-=======
 from secret_key import openapi_key
 import os
 from PyPDF2 import PdfReader
@@ -11,15 +7,14 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import OpenAI
->>>>>>> 0d1d6c700b3d094e4ed64e4fc696b1bc40a5a616
 
 st.set_page_config(page_icon='rex.png', layout='wide', page_title='Interview Preparation : Getting Started')
 
 st.sidebar.markdown("Navigate using the options above")
 #key = st.sidebar.text_input("OpenAI API Key ", type="password")
 
-# if "openai_key" not in st.session_state:
-#     st.session_state.openai_key = openapi_key
+if "openai_key" not in st.session_state:
+    st.session_state.openai_key = openapi_key
 
 #if not key and not st.session_state.openai_key:
    # st.sidebar.info("Please add your API key to continue")
@@ -87,14 +82,3 @@ st.header("Job Details")
 st.session_state["Job Description"] = st.text_area(label="**Write your job description here**", height=300)
 
 
-<<<<<<< HEAD
-uploaded_pdf = st.sidebar.file_uploader("**Please upload your resume**", type='pdf')
-if uploaded_pdf is not None:
-    user_info = data_extraction.get_major(pdf_reader.read_pdf(uploaded_pdf))
-    st.write(user_info)
-
-st.text_area(label="**Write your job description here**", height=300)
-
-
-=======
->>>>>>> 0d1d6c700b3d094e4ed64e4fc696b1bc40a5a616
