@@ -40,39 +40,42 @@ st.markdown("""\n1. Please upload your **resume** in the sidebar on your **left*
 st.sidebar.header("Resume")
 resume = st.sidebar.file_uploader(label="**Upload your Resume/CV PDF file**", type='pdf')
 
-if resume:
-    pdf = PdfReader(resume)
+# if resume:
+#     pdf = PdfReader(resume)
+#
+#     text = ""
+#     for page in pdf.pages:
+#         text += page.extract_text()
+#
+#     text_splitter = CharacterTextSplitter(
+#         separator="\n",
+#         chunk_size=1000,
+#         chunk_overlap=200,
+#         length_function=len
+#     )
+#     chunks = text_splitter.split_text(text)
+#     embeddings = OpenAIEmbeddings()
+#     doc = FAISS.from_texts(chunks, embeddings)
+#
+#     chain = load_qa_chain(llm, chain_type="stuff")
+#
+#     name = chain.run(input_documents=doc.similarity_search("What is the person's name?"), question="What is the person's name")
+#     exp = chain.run(input_documents=doc.similarity_search("What is the professional experience?"), question="What is the professional experience?")
+#     skills = chain.run(input_documents=doc.similarity_search("What are the person's skills?"), question="What are the person's skills?")
+#     certs = chain.run(input_documents=doc.similarity_search("What is the person's courses/certifications?"), question="What is the person's courses/certifications?")
+#     projects = chain.run(input_documents=doc.similarity_search("What are the person's projects"), question="What are the person's projects")
+#
+#     resume_info = {"Name": name,
+#                    "Experience": exp,
+#                    "Skills": skills,
+#                    "Certifications": certs,
+#                    "Projects": projects
+#                    }
+#
+#     st.session_state["Resume Info"] = resume_info
+#
 
-    text = ""
-    for page in pdf.pages:
-        text += page.extract_text()
-
-    text_splitter = CharacterTextSplitter(
-        separator="\n",
-        chunk_size=1000,
-        chunk_overlap=200,
-        length_function=len
-    )
-    chunks = text_splitter.split_text(text)
-    embeddings = OpenAIEmbeddings()
-    doc = FAISS.from_texts(chunks, embeddings)
-
-    chain = load_qa_chain(llm, chain_type="stuff")
-
-    name = chain.run(input_documents=doc.similarity_search("What is the person's name?"), question="What is the person's name")
-    #exp = chain.run(input_documents=doc.similarity_search("What is the professional experience?"), question="What is the professional experience?")
-    skills = chain.run(input_documents=doc.similarity_search("What are the person's skills?"), question="What are the person's skills?")
-    #certs = chain.run(input_documents=doc.similarity_search("What is the person's courses/certifications?"), question="What is the person's courses/certifications?")
-    #projects = chain.run(input_documents=doc.similarity_search("What are the person's projects"), question="What are the person's projects")
-
-    resume_info = {"Name": name,
-                   #"Experience": exp,
-                   "Skills": skills,
-                   #"Certifications": certs,
-                   #"Projects": projects
-                   }
-
-    st.session_state["Resume Info"] = resume_info
+st.session_state["Resume Info"] = "I am a Data Analyst with experience in Machine Learning"
 
 st.header("Job Details")
 

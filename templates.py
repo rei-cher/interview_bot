@@ -70,7 +70,7 @@ If a question has been asked multiple times, still number it and mention it in t
 choose_template = """ Based on the action : {action} , choose a question and corresponding intent from the the dataset : {data}. 
 
 If action is "Next" , the chosen question should NOT be the same as the ones in this list of questions: {questions}. One question should not be asked more than once.
-If the action is "Repeat", simply say "Please provide your improved response"
+If the action is "Repeat", just provide the last question in the list of questions again. Do not choose a new question in this case.
 Try to make the questions relevant to the user's details : {details} and job description : {description}
 
 Your response should be like :
@@ -84,6 +84,14 @@ You MUST choose a question, and provide intent from dataset for it.
 
 warmup_feedback_template = """Provide an assessment to the response : {response} to the question  : {question} of an
         interview.
+        
+        Before giving the feedback , make sure that the response is relevant to the question. If it seems like the user gave an ambigious response, or it seems.     
+        like the user did not understand the question. For example , "I don't know" , "Not Sure" , and other responses like these are not to be considered proper responses.
+        Do not provide feedback in this case AT ALL. Instead, Tell the user you are not sure if the user understood the 
+        question correctly , and explain the question : {asked} to the user by elaborating on it and explaining what it means.
+        
+        If the response is a proper response to the question , then : 
+        
         Use the following key to guide your final assessment and score :
          1. Is the answer in clear, concise wording? Mark out of 10 points
          3. Is the tone of the answer professional and formal? Mark out of 10 points?
@@ -99,6 +107,7 @@ warmup_feedback_template = """Provide an assessment to the response : {response}
         
 
         Do not give general tips, they must be specific to the user's response , give a compact and precise response, do not provide long responses.
+        
 
                       """
 
@@ -123,4 +132,9 @@ interview_feedback_template = """Provide  an critical assessment to the response
     Give the response a score out of 100. Be critical. Do not be afraid to give 0 if the candidate's response does not 
     satisfy the intent, is not even related to the question. Answers that are too abrupt or short should also be marked
     poorly.
+    
+    Before giving the feedback , make sure that the response is relevant to the question. If it seems like the user gave an ambigious response, or it seems.     
+        like the user did not understand the question. For example , "I don't know" , "Not Sure" , and other responses like these are not to be considered proper responses.
+        Tell the user you are not sure if the user understood the question correctly , and ask them to choose the repeat option if that 
+        is the case.
                   """

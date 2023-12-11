@@ -34,13 +34,13 @@ if not st.session_state.openai_key:
     st.info("Please add your API key to continue")
     st.stop()
 
-if not st.session_state["Resume Info"]:
-    st.info("Please upload your Resume")
-    st.stop()
-
-if not st.session_state["Job Description"]:
-    st.info("Please add your job description")
-    st.stop()
+# if not st.session_state["Resume Info"]:
+#     st.info("Please upload your Resume")
+#     st.stop()
+#
+# if not st.session_state["Job Description"]:
+#     st.info("Please add your job description")
+#     st.stop()
 
 os.environ['OPENAI_API_KEY'] = st.session_state.openai_key
 
@@ -149,7 +149,7 @@ if st.session_state.action == "Next" or "Repeat" and (
 
     with st.chat_message("assistant", avatar='rex.png'):
 
-        st.markdown(response)
+        st.markdown(chosen_q)
 
         st.session_state.action = "Feedback"
     st.session_state['warmup_message'].append({'role': 'interviewer', 'content': response})
@@ -160,7 +160,7 @@ if st.session_state.action == "Next" or "Repeat" and (
     st.stop()
 
 if st.session_state.warmup_message[-1]['role'] == "user" and st.session_state.action == "Feedback":
-    feedback = feedback_chain.run(question=question, response=inp, history=st.session_state.history[-4:], text=inp)
+    feedback = feedback_chain.run(question=question, response=inp, history=st.session_state.history[-4:], text=inp,asked=st.session_state.warmup_message[-2]['content'])
 
     with st.chat_message("assistant", avatar='rex.png'):
         st.markdown(feedback)
