@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/Interview Bot App.iml" filepath="$PROJECT_DIR$/.idea/Interview Bot App.iml" />
-=======
-      <module fileurl="file://$PROJECT_DIR$/.idea/interview_bot.iml" filepath="$PROJECT_DIR$/.idea/interview_bot.iml" />
->>>>>>> 083c680dc186cbb5267e56d3487da52808f3375e
     </modules>
   </component>
 </project>
