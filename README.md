@@ -7,7 +7,6 @@ This Interview Preparation Tool is an innovative Streamlit application designed 
 - **Resume Upload:** Users can upload their resume for personalized feedback and question generation.
 - **Job Description Input:** Input a job description for tailored interview questions.
 - **Interview Rounds:** Different interview rounds (Introduction, Warmup, and Interview) simulate various stages of an actual interview.
-- **Voice Input for Interview Preparation:** Users can upload voice recordings for transcription and practice.
 - **AI-Driven Feedback:** Receive feedback and scores on your responses, helping you to improve your interview skills.
 
 ## Installation
