@@ -35,7 +35,6 @@ Execute the Streamlit app:
 - **Start the Application:** Launch the tool using Streamlit.
 - **Upload Resume:** Use the sidebar to upload your resume in PDF format.
 - **Enter Job Description:** Input the job description for the position you're applying for.
-- **Voice Recording:** Optionally, upload a voice recording for practice.
 - **Navigate Through Rounds:** Utilize different rounds (Introduction, Warmup, Interview) for comprehensive preparation.
 - **Receive AI Feedback:** Get instant feedback and suggestions on your responses.
 
