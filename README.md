@@ -13,7 +13,7 @@ This Interview Preparation Tool is an innovative Streamlit application designed 
 ## Installation
 
 1. **Clone the Repository:**
-git clone [https://github.com/rei-cher/interview_bot.git]
+git clone https://github.com/rei-cher/interview_bot.git
 
 2. **Install Dependencies:**
 - Ensure Python 3.8+ is installed.
